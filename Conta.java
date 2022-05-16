@@ -2,6 +2,7 @@ public class Conta {
     private String nome;
     private int cpf;
     private Double saldo;
+    private boolean status;
 
     public Conta(String nome, int cpf){
         this.nome = nome;

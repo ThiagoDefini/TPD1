@@ -4,39 +4,41 @@ import java.rmi.server.UnicastRemoteObject;
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
 public class AdministracaoImp extends UnicastRemoteObject implements Administracao{
 
-    private double[] memory = new double[10];
-
-    public CalculadoraImp() throws RemoteException{
+    public AdministracaoImp() throws RemoteException{
         super();
     }
 
     @Override
-    public Double soma(double x, double y) throws RemoteException {
-        return x + y;
+    public boolean abrirConta (String nome, int cpf) throws RemoteException{
+        Conta c = new Conta(nome, cpf);
+        
     }
 
     @Override
-    public Double sub(double x, double y) throws RemoteException {
-        return x - y;
+    public boolean fecharConta (Conta c) throws RemoteException{
+
     }
 
     @Override
-    public Double mult(double x, double y) throws RemoteException {
-        return x * y;
+    public boolean autenticarConta (Conta c) throws RemoteException{
+
     }
 
     @Override
-    public Double div(double x, double y) throws RemoteException {
-        return x / y;
+    public Double saque (Conta c, Double saque) throws RemoteException{
+        if(saque > c.getSaldo() || saque <= 0){
+            return c.getSaldo();
+        }
+        return c.getSaldo() - saque;
     }
 
     @Override
-    public void store(int x, double y) throws RemoteException {
-        memory[x] = y;
+    public Double deposito (Conta c, Double deposito) throws RemoteException{
+        Double aux = c.getSaldo();
+
+        c.setSaldo(aux + deposito);
+
+        return c.getSaldo();
     }
-    
-    @Override
-    public Double load(int x) throws RemoteException {
-        return memory[x];
-    }
+
 }
