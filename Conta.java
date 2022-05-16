@@ -8,6 +8,7 @@ public class Conta {
         this.nome = nome;
         this.cpf = cpf;
         this.saldo = 0.0;
+        this.status = true;
     }
 
     public String getNome() {
@@ -32,6 +33,14 @@ public class Conta {
 
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
 }
