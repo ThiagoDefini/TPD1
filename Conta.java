@@ -1,4 +1,5 @@
-public class Conta {
+public class 
+Conta {
     private String nome;
     private int cpf;
     private Double saldo;

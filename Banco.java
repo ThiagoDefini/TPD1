@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public class Banco {
     private String nome;
     private int codigo;
-    private Arraylist<Conta> contas;
+    private ArrayList<Conta> contas;
     public Banco(String nome, int codigo) {
         this.nome = nome;
         this.codigo = codigo;
@@ -22,7 +24,7 @@ public class Banco {
 
     public Conta getConta(int cpf){
         for(Conta c : contas){
-            if(c.getCpf == cpf){
+            if(c.getCpf() == cpf){
                 return c; 
             }
         }
