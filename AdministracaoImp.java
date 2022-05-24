@@ -4,8 +4,6 @@ import java.rmi.server.UnicastRemoteObject;
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
 public class AdministracaoImp extends UnicastRemoteObject implements Administracao{
 
-    Banco b = (Banco) Naming.lookup("rmi://localhost:1099/BancService");
-
     public AdministracaoImp() throws RemoteException{
         super();
     }

@@ -12,8 +12,9 @@ public class BancoServer {
             LocateRegistry.createRegistry(1099);
             //Cria o objeto que implementa os metodos que serao servidos
             Administracao ad = new AdministracaoImp();
+            Banco banco = new Banco("Itau",1);
             //Coloca na porta registrada o servico da calculadora
-            Naming.bind("BancService", (Remote) b);
+            Naming.bind("AdmService", (Remote) ad);
             System.out.println("Conexao estabelecida.");
 
         } catch (Exception e) {
