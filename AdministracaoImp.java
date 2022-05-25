@@ -7,7 +7,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
 
     private class Transacao {
         private String codTransacao;
-        private boolean status;        
+        private boolean status;
 
         public Transacao(String codTransacao, boolean status){
             this.codTransacao = codTransacao;
@@ -96,7 +96,7 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
         }
         Conta c = banco.getConta(cpf);
         if(saque > c.getSaldo() || saque <= 0){
-            Transacao f = new Transacao(codTransacao, true);
+            Transacao f = new Transacao(codTransacao, false);
             transacoes.add(f);
             return false;
         }
@@ -108,12 +108,33 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
     }
 
     @Override
+    public boolean saqueFalso(int cpf, Double saque, String codTransacao) throws RemoteException{
+        if(containsTransacao(codTransacao) && getStatusTransacao(codTransacao) == true){
+            //Verifica se a transação o correu mesmo que tenha retornado false
+            return true;
+        }
+        Conta c = banco.getConta(cpf);
+        if(saque > c.getSaldo() || saque <= 0){
+            Transacao f = new Transacao(codTransacao, false);
+            transacoes.add(f);
+            return false;
+        }
+        Double i = c.getSaldo() - saque;
+        c.setSaldo(i);
+        //Transação ocorreu
+        Transacao t = new Transacao(codTransacao, true);
+        transacoes.add(t);
+        //Mas retornou false
+        return false;
+    }
+
+    @Override
     public boolean deposito (int cpf, Double deposito, String codTransacao) throws RemoteException{
         if(containsTransacao(codTransacao) && getStatusTransacao(codTransacao) == true){
             return true;
         }
         if(deposito <= 0){
-            Transacao f = new Transacao(codTransacao, true);
+            Transacao f = new Transacao(codTransacao, false);
             transacoes.add(f);
             return false;
         }
@@ -123,6 +144,27 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
         Transacao t = new Transacao(codTransacao, true);
         transacoes.add(t);
         return true;
+    }
+
+    @Override
+    public boolean depositoFalso(int cpf, Double deposito, String codTransacao) throws RemoteException{
+        if(containsTransacao(codTransacao) && getStatusTransacao(codTransacao) == true){
+            //Verifica se a transação o correu mesmo que tenha retornado false
+            return true;
+        }
+        if(deposito <= 0){
+            Transacao f = new Transacao(codTransacao, false);
+            transacoes.add(f);
+            return false;
+        }
+        Conta c = banco.getConta(cpf);
+        Double i = c.getSaldo() + deposito;
+        c.setSaldo(i);
+        //Transação ocorreu
+        Transacao t = new Transacao(codTransacao, true);
+        transacoes.add(t);
+        //Mas retornou false
+        return false;
     }
 
     @Override
