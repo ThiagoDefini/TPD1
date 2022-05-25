@@ -22,6 +22,10 @@ public class Banco {
         this.codigo = codigo;
     }
 
+    public ArrayList<Conta> getContas(){
+        return contas;
+    }
+
     public Conta getConta(int cpf){
         for(Conta c : contas){
             if(c.getCpf() == cpf){

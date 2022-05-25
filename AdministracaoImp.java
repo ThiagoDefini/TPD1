@@ -65,8 +65,20 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
         return false;
     }
 
+    public boolean containsConta(int cpf){
+        for(Conta c:banco.getContas()){
+            if(c.getCpf() == cpf){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean abrirConta (String nome, int cpf, int senha) throws RemoteException{
+        if(containsConta(cpf)){
+            return false;
+        }
         Conta c = new Conta(nome, cpf, senha);
         banco.adicionarConta(c);
         return true;
@@ -74,6 +86,9 @@ public class AdministracaoImp extends UnicastRemoteObject implements Administrac
 
     @Override
     public boolean fecharConta (int cpf) throws RemoteException{
+        if(!containsConta(cpf)){
+            return false;
+        }
         Conta c = banco.getConta(cpf);
         c.setStatus(false);
         return true;

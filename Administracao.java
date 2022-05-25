@@ -3,7 +3,6 @@ import java.rmi.*;
 public interface Administracao extends Remote {
     public boolean abrirConta (String nome, int cpf, int senha) throws RemoteException;
     public boolean fecharConta (int cpf) throws RemoteException;
-    //Pronto
     public boolean autenticarConta (int cpf, int senha) throws RemoteException;
     public boolean saque (int cpf, Double saque, String codCount) throws RemoteException;
     public boolean saqueFalso(int cpf, Double saque, String codCount) throws RemoteException;

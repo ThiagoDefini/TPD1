@@ -4,7 +4,7 @@ import java.util.Scanner;
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
 public class CaixaEletronico{
 
-    private static String cod = "3";
+    private static String cod = "1";
     private static int count;
     
     public static String gerarCodigo(){

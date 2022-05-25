@@ -42,7 +42,11 @@ public class Agencia{
                         cpf = scan.nextInt();
                         System.out.print("Digite a senha da conta: ");
                         senha = scan.nextInt();
-                        adm.abrirConta(nome, cpf, senha);
+                        if(adm.abrirConta(nome, cpf, senha)){
+                            System.out.println("A conta foi criada.");
+                        }else{
+                            System.out.println("Erro ao criar a conta.");
+                        }
                     break;
                     case 2:
                     //Autenticação de Conta
