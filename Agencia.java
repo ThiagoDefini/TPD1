@@ -217,6 +217,7 @@ public class Agencia{
         }catch (Exception e) {
             e.printStackTrace();
         }
+        scan.close();
     }
 
 }

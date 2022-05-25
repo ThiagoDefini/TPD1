@@ -1,7 +1,6 @@
 import java.rmi.Naming;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.server.UnicastRemoteObject;
 
 public class BancoServer {
     public BancoServer(){

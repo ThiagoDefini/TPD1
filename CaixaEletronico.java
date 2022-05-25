@@ -177,6 +177,7 @@ public class CaixaEletronico{
         }catch (Exception e) {
             e.printStackTrace();
         }
+        scan.close();
     }
 
 }
