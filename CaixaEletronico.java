@@ -4,7 +4,7 @@ import java.util.Scanner;
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
 public class CaixaEletronico{
 
-    private static String cod = "100";
+    private static String cod = "3";
     private static int count;
     
     public static String gerarCodigo(){
@@ -109,7 +109,7 @@ public class CaixaEletronico{
                             //Saque com erro
                             String codSaqueF = gerarCodigo(); 
                             boolean aux4 = false;
-                            int menuAux;
+                            int menuAux4;
                             Double saqueF;
                             System.out.print("Digite o valor do saque: ");
                             saqueF = scan.nextDouble();
@@ -124,8 +124,8 @@ public class CaixaEletronico{
                                     }else{
                                         System.out.println("Ocorreu um erro.");
                                         System.out.println("Deseja realizar a operação novamente? 1=Sim|2=Não");
-                                        menuAux = scan.nextInt();
-                                        if(menuAux == 2){
+                                        menuAux4 = scan.nextInt();
+                                        if(menuAux4 == 2){
                                             aux4 = false;
                                         }else{
                                             aux4 =true;
