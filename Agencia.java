@@ -29,7 +29,7 @@ public class Agencia{
                         System.out.println("Digite o CPF da conta: ");
                         cpf = scan.nextInt();
                         
-                        adm.abrirConta(nome, cpf);
+                        //adm.abrirConta(nome, cpf);
                     break;
                     case 2:
                     //Autenticação de Conta
@@ -56,7 +56,7 @@ public class Agencia{
                         cpf = scan.nextInt();
                         System.out.print("Digite o valor do saque");
                         saque = scan.nextDouble();
-                        System.out.println("Saldo depois do saque: " + adm.saque(cpf, saque));
+                        //System.out.println("Saldo depois do saque: " + adm.saque(cpf, saque));
                     break;
                     case 5:
                     //Deposito
@@ -65,7 +65,7 @@ public class Agencia{
                         cpf = scan.nextInt();
                         System.out.print("Digite o valor do deposito: ");
                         deposito = scan.nextDouble();
-                        System.out.println("Saldo depois do deposito: " + adm.deposito(cpf, deposito));
+                        //System.out.println("Saldo depois do deposito: " + adm.deposito(cpf, deposito));
                     break;
                     case 6:
                     //Saldo

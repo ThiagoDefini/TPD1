@@ -1,13 +1,14 @@
-public class 
-Conta {
+public class Conta {
     private String nome;
     private int cpf;
+    private int senha;
     private Double saldo;
     private boolean status;
 
-    public Conta(String nome, int cpf){
+    public Conta(String nome, int cpf, int senha){
         this.nome = nome;
         this.cpf = cpf;
+        this.senha = senha;
         this.saldo = 0.0;
         this.status = true;
     }
@@ -28,6 +29,14 @@ Conta {
         this.cpf = cpf;
     }
 
+    public int getSenha() {
+        return senha;
+    }
+
+    public void setSenha(int senha) {
+        this.senha = senha;
+    }
+
     public Double getSaldo() {
         return saldo;
     }
@@ -36,7 +45,7 @@ Conta {
         this.saldo = saldo;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
