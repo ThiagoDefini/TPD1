@@ -31,6 +31,15 @@ public class Banco {
         return null;
     }
 
+    public boolean contains(int cpf) {
+        for(Conta c : contas){
+            if(c.getCpf() == cpf){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void adicionarConta(Conta c){
         contas.add(c);
     }

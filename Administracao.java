@@ -2,8 +2,9 @@ import java.rmi.*;
 
 public interface Administracao extends Remote {
     public boolean abrirConta (String nome, int cpf) throws RemoteException;
-    public boolean fecharConta (Conta c) throws RemoteException;
-    public boolean autenticarConta (Conta c) throws RemoteException;
-    public Double saque (Conta c, Double saque) throws RemoteException;
-    public Double deposito (Conta c, Double deposito) throws RemoteException;
+    public boolean fecharConta (int cpf) throws RemoteException;
+    public boolean autenticarConta (int cpf) throws RemoteException;
+    public Double saque (int cpf, Double saque) throws RemoteException;
+    public Double deposito (int cpf, Double deposito) throws RemoteException;
+    public Double saldo (int cpf) throws RemoteException;
 }

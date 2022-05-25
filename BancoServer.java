@@ -10,11 +10,10 @@ public class BancoServer {
             System.setProperty("java.rmi.server.hostname", "localhost");
             //Registro do servico em uma porta
             LocateRegistry.createRegistry(1099);
-            //Cria o objeto que implementa os metodos que serao servidos
-            Administracao ad = new AdministracaoImp();
-            Banco banco = new Banco("Itau",1);
+            //Cria o objeto que implementa os metodos que seraeo servidos
+            Administracao adm = new AdministracaoImp();
             //Coloca na porta registrada o servico da calculadora
-            Naming.bind("AdmService", (Remote) ad);
+            Naming.bind("AdmService", (Remote) adm);
             System.out.println("Conexao estabelecida.");
 
         } catch (Exception e) {

@@ -4,58 +4,55 @@ import java.util.Scanner;
 //UnicastRemoteObject permite que a implementacao da classe possa ser estabelecida como um servico remoto
 public class CaixaEletronico{
 
-    public static Double solicitaSaque (Conta c, Double saque) throws RemoteException{
-        return ag.solicitaSaque(c, saque);
-    }
-
-    
-    public static Double solicitaDeposito (Conta c, Double deposito) throws RemoteException{
-        return ag.solicitaDeposito(c, deposito);
-    }
-
-    
-    public static Double solicitaSaldo(Conta c) throws RemoteException{
-        return c.getSaldo();
-    }
-
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
-        
-        Administracao ad = (Administracao) Naming.lookup("rmi://localhost:1099/CalcService");
+        try{
+            Administracao adm = (Administracao) Naming.lookup("rmi://localhost:1099/AdmService");
 
-        int menu;
+            int cpf = 0;
 
-        do{
-            System.out.println("1 - Saque");
-            System.out.println("2 - Deposito");
-            System.out.println("3 - Saldo");
-            System.out.println("4 - Sair");
-            menu = scan.nextInt();
+            do{
+                cpf = 0;
+                System.out.println("Digite o CPF da conta: ");
+                cpf = scan.nextInt();
 
-            switch(menu){
-                case 1:
+                int menu;
+                do{
+                    System.out.println("1 - Saque");
+                    System.out.println("2 - Deposito");
+                    System.out.println("3 - Saldo");
+                    System.out.println("4 - Sair");
+                    menu = scan.nextInt();
 
-                break;
-                case 2:
+                    switch(menu){
+                        case 1:
+                            Double saque;
+                            System.out.print("Digite o valor do saque");
+                            saque = scan.nextDouble();
+                            System.out.println("Saldo depois do saque: " + adm.saque(cpf, saque));
+                        break;
+                        case 2:
+                            Double deposito;
+                            System.out.print("Digite o valor do deposito: ");
+                            deposito = scan.nextDouble();
+                            System.out.println("Saldo depois do deposito: " + adm.deposito(cpf, deposito));
+                        break;
+                        case 3:
+                            System.out.println(adm.saldo(cpf));
+                        break;
+                        case 4:
+                            System.out.println("Fechando o Programa.");
+                        break;
+                        default:
+                            System.out.println("Digite uma opção válida!");
+                    }
 
-                break;
+                }while(menu != 4);
 
-                case 3:
-
-                break;
-
-                case 4:
-
-                break;
-                default:
-                    System.out.println("Digite uma opção válida!");
-            }
-
-
-
-        }while(menu != 4);
-
-
+            }while(adm.autenticarConta(cpf));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
